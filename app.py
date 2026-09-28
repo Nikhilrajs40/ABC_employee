@@ -21,38 +21,90 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+/* Main background */
 .stApp {
     background: linear-gradient(135deg, #eef7ff, #f8f0ff);
 }
 
+/* Main title */
 .main-title {
     text-align: center;
-    color: #4B2E83;
+    color: #4B2E83 !important;
     font-size: 38px;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
+/* Subtitle */
 .subtitle {
     text-align: center;
-    color: #555555;
+    color: #444444 !important;
     font-size: 18px;
     margin-bottom: 30px;
 }
 
+/* Section headings */
 .section-title {
-    color: #2563EB;
+    color: #2563EB !important;
     font-size: 24px;
     font-weight: 600;
     margin-top: 20px;
+    margin-bottom: 15px;
 }
 
+/* IMPORTANT: Make all input labels visible */
+.stNumberInput label,
+.stSelectbox label,
+.stNumberInput label p,
+.stSelectbox label p {
+    color: #222222 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}
+
+/* Input text */
+.stNumberInput input {
+    color: #222222 !important;
+}
+
+/* Selectbox text */
+.stSelectbox div {
+    color: #222222;
+}
+
+/* Result box */
 .result-box {
     padding: 20px;
     border-radius: 15px;
     background-color: white;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.10);
     margin-top: 20px;
+}
+
+/* Predict button */
+.stButton > button {
+    width: 100%;
+    background: linear-gradient(90deg, #4B2E83, #2563EB);
+    color: white !important;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px;
+    border: none;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(90deg, #2563EB, #4B2E83);
+    color: white !important;
+}
+
+/* Success and error text */
+.stSuccess {
+    font-size: 17px;
+}
+
+.stError {
+    font-size: 17px;
 }
 
 </style>
@@ -148,7 +200,7 @@ OverTime = st.selectbox(
 )
 
 
-# Convert Overtime to the same format used during model training
+# Convert Overtime to model format
 OverTime = 1 if OverTime == 'Yes' else 0
 
 
@@ -192,13 +244,13 @@ if st.button('🔍 Analyze Employee', use_container_width=True):
     if attrition_prediction == 1:
 
         st.error(
-            f"⚠️ The employee is predicted to **LEAVE**."
+            "⚠️ The employee is predicted to **LEAVE**."
         )
 
     else:
 
         st.success(
-            f"✅ The employee is predicted to **STAY**."
+            "✅ The employee is predicted to **STAY**."
         )
 
     st.write(
